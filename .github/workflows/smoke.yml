@@ -1,0 +1,40 @@
+name: smoke test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  convert-sample:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Run the bundled sample through the converter
+        run: |
+          cd examples
+          cp sample-conversations.json conversations.json
+          cp sample-users.json users.json
+          python ../claude_export_reader.py .
+      - name: Assert key features survived the round trip
+        run: |
+          cd examples
+          grep -q "思考过程"            Claude对话记录.txt
+          grep -q "编辑前的旧分支"      Claude对话记录.txt
+          grep -q "排序前: \[3, 1, 2\]" Claude对话记录.txt   # bash 结果反序列化 + \uXXXX 还原
+          grep -q '<li value="2"'       Claude对话记录.html  # 有序列表保留原编号
+          grep -q "调用失败"            Claude对话记录.html  # is_error 标记
+          grep -q "<table>"             Claude对话记录.html  # Markdown 表格渲染
+      - name: Edge cases exit gracefully
+        run: |
+          echo '[]' > empty.json
+          python claude_export_reader.py empty.json -o /tmp/empty-out
+          echo '{broken' > bad.json
+          if python claude_export_reader.py bad.json 2>err.log; then exit 1; fi
+          grep -q "JSON 解析失败" err.log

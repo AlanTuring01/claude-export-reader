@@ -3,8 +3,8 @@
     "uuid": "11111111-1111-4111-8111-111111111111",
     "name": "Markdown 与工具调用渲染演示",
     "summary": "",
-    "created_at": "2026-01-01T08:00:00.000000Z",
-    "updated_at": "2026-01-01T08:10:00.000000Z",
+    "created_at": "2026-01-03T08:00:00.000000Z",
+    "updated_at": "2026-01-03T08:10:00.000000Z",
     "account": {"uuid": "00000000-0000-4000-8000-00000000aaaa"},
     "chat_messages": [
       {
@@ -14,8 +14,8 @@
           {"type": "text", "text": "请对比几种常见的排序算法，并演示一段代码。", "citations": []}
         ],
         "sender": "human",
-        "created_at": "2026-01-01T08:00:00.000000Z",
-        "updated_at": "2026-01-01T08:00:00.000000Z",
+        "created_at": "2026-01-03T08:00:00.000000Z",
+        "updated_at": "2026-01-03T08:00:00.000000Z",
         "attachments": [
           {"file_name": "笔记.txt", "file_size": 64, "file_type": "txt", "extracted_content": "这是一个附件提取文本的示例，用于测试附件渲染。"}
         ],
@@ -47,8 +47,8 @@
           ]}
         ],
         "sender": "assistant",
-        "created_at": "2026-01-01T08:01:00.000000Z",
-        "updated_at": "2026-01-01T08:01:30.000000Z",
+        "created_at": "2026-01-03T08:01:00.000000Z",
+        "updated_at": "2026-01-03T08:01:30.000000Z",
         "attachments": [],
         "files": [],
         "parent_message_uuid": "11111111-1111-4111-8111-aaaaaaaaaaa1"
