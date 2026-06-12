@@ -1,0 +1,109 @@
+[
+  {
+    "uuid": "11111111-1111-4111-8111-111111111111",
+    "name": "Markdown 与工具调用渲染演示",
+    "summary": "",
+    "created_at": "2026-01-01T08:00:00.000000Z",
+    "updated_at": "2026-01-01T08:10:00.000000Z",
+    "account": {"uuid": "00000000-0000-4000-8000-00000000aaaa"},
+    "chat_messages": [
+      {
+        "uuid": "11111111-1111-4111-8111-aaaaaaaaaaa1",
+        "text": "请对比几种常见的排序算法，并演示一段代码。",
+        "content": [
+          {"type": "text", "text": "请对比几种常见的排序算法，并演示一段代码。", "citations": []}
+        ],
+        "sender": "human",
+        "created_at": "2026-01-01T08:00:00.000000Z",
+        "updated_at": "2026-01-01T08:00:00.000000Z",
+        "attachments": [
+          {"file_name": "笔记.txt", "file_size": 64, "file_type": "txt", "extracted_content": "这是一个附件提取文本的示例，用于测试附件渲染。"}
+        ],
+        "files": [
+          {"file_uuid": "22222222-2222-4222-8222-222222222222", "file_name": "示意图.png"}
+        ],
+        "parent_message_uuid": "00000000-0000-4000-8000-000000000000"
+      },
+      {
+        "uuid": "11111111-1111-4111-8111-aaaaaaaaaaa2",
+        "text": "",
+        "content": [
+          {"type": "thinking", "thinking": "用户想了解排序算法。我先搜索一下常见算法的复杂度，再给出对比表格和示例代码。", "summaries": [{"summary": "规划回答结构"}], "cut_off": false, "truncated": false},
+          {"type": "tool_use", "id": "toolu_sample000000000000000001", "name": "web_search", "input": {"query": "排序算法 时间复杂度 对比"}, "message": "Searching the web"},
+          {"type": "tool_result", "tool_use_id": "toolu_sample000000000000000001", "name": "web_search", "content": [
+            {"type": "knowledge", "title": "排序算法 - 维基示例页", "url": "https://example.com/sorting", "text": "示例搜索结果正文（会被转换器省略，只保留标题与链接）。", "is_missing": false},
+            {"type": "knowledge", "title": "常见算法复杂度速查", "url": "https://example.org/complexity", "text": "另一条示例搜索结果。", "is_missing": false}
+          ]},
+          {"type": "tool_use", "id": "toolu_sample000000000000000002", "name": "bash_tool", "input": {"command": "python3 sort_demo.py"}, "message": "Running command"},
+          {"type": "tool_result", "tool_use_id": "toolu_sample000000000000000002", "name": "bash_tool", "content": [
+            {"type": "text", "text": "{\"returncode\": 0, \"stdout\": \"\\u6392\\u5e8f\\u524d: [3, 1, 2]\\n\\u6392\\u5e8f\\u540e: [1, 2, 3]\", \"stderr\": \"\"}"}
+          ]},
+          {"type": "tool_use", "id": "toolu_sample000000000000000003", "name": "web_fetch", "input": {"url": "https://example.net/blocked"}, "message": "Fetching page"},
+          {"type": "tool_result", "tool_use_id": "toolu_sample000000000000000003", "name": "web_fetch", "is_error": true, "content": [
+            {"type": "text", "text": "Permission error: ROBOTS_DISALLOWED（这是一条用于测试失败标记的示例错误）"}
+          ]},
+          {"type": "text", "text": "## 常见排序算法对比\n\n| 算法 | 平均复杂度 | 稳定 |\n|------|-----------|------|\n| 冒泡排序 | O(n²) | 是 |\n| 快速排序 | O(n log n) | 否 |\n| 归并排序 | O(n log n) | 是 |\n\n选择建议：\n\n1. 数据量小且基本有序时，**插入排序**反而更快。\n\n2. 通用场景直接用语言内置的排序（通常是混合算法）。\n\n3. 需要稳定性时选归并排序：\n   - 链表场景尤其合适\n   - 外部排序也常用它\n\n示例代码（注意 \\*args 这种转义写法的渲染）：\n\n```python\ndef bubble_sort(arr):\n    for i in range(len(arr)):\n        for j in range(len(arr) - 1 - i):\n            if arr[j] > arr[j + 1]:\n                arr[j], arr[j + 1] = arr[j + 1], arr[j]\n    return arr\n```\n\n更多细节可以参考搜索到的资料。", "citations": [
+            {"uuid": "33333333-3333-4333-8333-333333333333", "start_index": 0, "end_index": 10, "details": {"type": "web_search_citation", "url": "https://example.com/sorting"}}
+          ]}
+        ],
+        "sender": "assistant",
+        "created_at": "2026-01-01T08:01:00.000000Z",
+        "updated_at": "2026-01-01T08:01:30.000000Z",
+        "attachments": [],
+        "files": [],
+        "parent_message_uuid": "11111111-1111-4111-8111-aaaaaaaaaaa1"
+      }
+    ]
+  },
+  {
+    "uuid": "44444444-4444-4444-8444-444444444444",
+    "name": "",
+    "summary": "",
+    "created_at": "2026-01-02T09:00:00.000000Z",
+    "updated_at": "2026-01-02T09:05:00.000000Z",
+    "account": {"uuid": "00000000-0000-4000-8000-00000000aaaa"},
+    "chat_messages": [
+      {
+        "uuid": "44444444-4444-4444-8444-bbbbbbbbbbb1",
+        "text": "把「你好」翻译成法语。",
+        "content": [{"type": "text", "text": "把「你好」翻译成法语。", "citations": []}],
+        "sender": "human",
+        "created_at": "2026-01-02T09:00:00.000000Z",
+        "updated_at": "2026-01-02T09:00:00.000000Z",
+        "attachments": [], "files": [],
+        "parent_message_uuid": "00000000-0000-4000-8000-000000000000"
+      },
+      {
+        "uuid": "44444444-4444-4444-8444-bbbbbbbbbbb2",
+        "text": "「你好」的法语是 Bonjour。",
+        "content": [{"type": "text", "text": "「你好」的法语是 **Bonjour**。", "citations": []}],
+        "sender": "assistant",
+        "created_at": "2026-01-02T09:00:30.000000Z",
+        "updated_at": "2026-01-02T09:00:30.000000Z",
+        "attachments": [], "files": [],
+        "parent_message_uuid": "44444444-4444-4444-8444-bbbbbbbbbbb1"
+      },
+      {
+        "uuid": "44444444-4444-4444-8444-bbbbbbbbbbb3",
+        "text": "把「你好，很高兴认识你」翻译成法语。",
+        "content": [{"type": "text", "text": "把「你好，很高兴认识你」翻译成法语。（这条是编辑后重发的消息，用于测试分支还原）", "citations": []}],
+        "sender": "human",
+        "created_at": "2026-01-02T09:02:00.000000Z",
+        "updated_at": "2026-01-02T09:02:00.000000Z",
+        "attachments": [], "files": [],
+        "parent_message_uuid": "00000000-0000-4000-8000-000000000000"
+      },
+      {
+        "uuid": "44444444-4444-4444-8444-bbbbbbbbbbb4",
+        "text": "",
+        "content": [{"type": "text", "text": "法语是：**Bonjour, enchanté de faire votre connaissance.**", "citations": []},
+                    {"type": "token_budget", "remaining": null}],
+        "sender": "assistant",
+        "created_at": "2026-01-02T09:02:30.000000Z",
+        "updated_at": "2026-01-02T09:02:30.000000Z",
+        "attachments": [], "files": [],
+        "parent_message_uuid": "44444444-4444-4444-8444-bbbbbbbbbbb3"
+      }
+    ]
+  }
+]

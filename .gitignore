@@ -1,0 +1,15 @@
+# 真实导出数据与生成的存档，严禁入库（仅匹配仓库根目录和 examples/ 下的副本）
+conversations.json
+users.json
+Claude对话记录.*
+/*.html
+/*.txt
+examples/*.html
+examples/*.txt
+
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
